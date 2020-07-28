@@ -1,0 +1,55 @@
+<!--This is the un-minified version of the status page.-->
+<html>
+    <head>
+        <title>
+            Weather Based Sprinkler Control
+        </title>
+        <style>
+        body{
+            background-color:  #424949;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+        }
+
+        button{
+            background-color: #424949;
+            font-family: Arial, Helvetica, sans-serif;
+            color: cyan;
+            border: none;
+            border-radius: 5%%;
+            width: 5%%;
+            height: 5%%;
+
+        }
+        img{
+            mix-blend-mode: hard-light;
+        }
+        </style>
+        <script>
+        window.onload = function() {
+        var current_date = new Date(%lld*1000);
+        document.getElementById('date').innerText = 'Retrieved '+ current_date.toString();
+        var sprink_bool = %s;
+        document.getElementById('sprink_stat').innerText = (sprink_bool ? 'enabled':'disabled');
+        document.getElementById('sprink_stat').style.color = (sprink_bool ? 'green':'red');
+        }
+        </script>
+    </head>
+    <body>
+
+                    <font size = '100' >
+                        <img src='http://openweathermap.org/img/wn/%s@2x.png'>
+                            <br>%.2f&deg;C
+                            <br>%s
+                        </font>
+
+        <br>
+        Sprinklers are <font id='sprink_stat'></font>
+        <br><br>
+        <div id = 'date'>
+        </div>
+    </div>
+        
+
+    </body>
+</html>

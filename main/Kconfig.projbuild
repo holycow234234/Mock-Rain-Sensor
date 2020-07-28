@@ -1,0 +1,47 @@
+# put here your custom config value
+menu "Wifi Configuration"
+config ESP_WIFI_SSID
+    string "WiFi SSID"
+    default "myssid"
+    help
+	SSID (network name) for the example to connect to.
+
+config ESP_WIFI_PASSWORD
+    string "WiFi Password"
+    default "mypassword"
+    help
+	WiFi password (WPA or WPA2) for the example to use.
+endmenu
+
+menu "Weather API Info"
+config API_KEY
+    string "apikey"
+    help
+    Your openweathermap API key, a free key will suffice.
+config REFRESH_INTERVAL
+    int "weather data refresh interval in seconds"
+    default 3600
+    help
+    The amount of time to refresh the weather data.
+config WEATHER_LAT
+    string "weather_lat"
+    help
+    The Latitude for the area where weather is to be monitored
+config WEATHER_LNG
+    string "weather_lng"
+    help
+    The Longitude for the area where weather is to be monitored
+endmenu
+
+menu "Weather Thresholds"
+config MIN_TEMP
+    int "minimum temperature in C"
+    default 20
+    help
+    Minimum temperature to allow sprinkler operation
+config HOLD_TIME
+    int "hold time in hours"
+    default 12
+    help
+    Time in hours to stop watering once thresholds are met
+endmenu
