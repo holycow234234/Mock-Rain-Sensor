@@ -8,7 +8,7 @@ bool wateringOk (struct Weather_Data weather_data){
     if (nvs_get_i64(weather_data.storage, "hold",&holdtime) != ESP_OK){
         ESP_LOGI("WEATHER","retrieve error");
     }
-    bool result = weather_data.currentTemp >= CONFIG_MIN_TEMP && weather_data.currentId >= 700;
+    bool result = weather_data.currentId >= 700;
     weather_data.sprinklersOn = result;
     //only increase hold time if conditions are bad
     if(!result){
@@ -16,6 +16,8 @@ bool wateringOk (struct Weather_Data weather_data){
                 ESP_LOGI("WEATHER","save error");
         }
     }
+    //low temperature should not result in hold time
+    if (weather_data.currentTemp >= CONFIG_MIN_TEMP) result = false;
     //check to make sure we don't have a current weather hold
     if(holdtime<weather_data.timeRetrieved && result){
         result = false;
