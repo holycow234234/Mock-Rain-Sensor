@@ -17,11 +17,10 @@ bool wateringOk (struct Weather_Data weather_data){
         }
     }
     //low temperature should not result in hold time
-    if (weather_data.currentTemp >= CONFIG_MIN_TEMP) result = false;
+    if (weather_data.currentTemp < CONFIG_MIN_TEMP) result = false;
     //check to make sure we don't have a current weather hold
-    if(holdtime<weather_data.timeRetrieved && result){
-        result = false;
-    }
+    if(holdtime > weather_data.timeRetrieved) result = false;
+
     return result;
 }
 
